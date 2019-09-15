@@ -12,7 +12,7 @@ const PostThumbnail = ({ title, author, published, comments, id }) => {
             </h3>
           </li>
           <li>
-            {comments.length} {comments.length > 1 ? "comments" : "comment"}
+            {comments.length} {comments.length !== 1 ? "comments" : "comment"}
           </li>
         </ul>
       </div>
