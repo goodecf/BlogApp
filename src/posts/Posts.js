@@ -1,11 +1,18 @@
 import React from "react";
-import Post from "./Post";
+import PostThumbnail from "./PostThumbnail";
 
-const Posts = posts => {
+const Posts = ({ posts }) => {
   return (
-    <div>
+    <div className="card">
       {posts.map(post => (
-        <Post name={post.name}></Post>
+        <PostThumbnail
+          title={post.title}
+          author={post.author}
+          published={post.published}
+          comments={post.comments}
+          key={post.id}
+          id={post.id}
+        ></PostThumbnail>
       ))}
     </div>
   );
