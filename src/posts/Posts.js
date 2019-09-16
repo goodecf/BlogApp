@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PostThumbnail from "./PostThumbnail";
+import PostContext from "../context/posts/postContext";
 
-const Posts = ({ posts }) => {
+const Posts = () => {
+  const postContext = useContext(PostContext);
+  // Get posts from post state
+  const posts = postContext.getPosts();
   return (
     <div className="card">
       {posts.map(post => (
