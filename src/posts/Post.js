@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import CreateComment from "../comments/CreateComment";
+import PostContext from "../context/posts/postContext";
 
-const Post = ({ title, author, published, comments, id }) => {
+const Post = ({ match }) => {
+  const postContext = useContext(PostContext);
+  const { post, getPost } = postContext;
+
+  useEffect(() => {
+    getPost(match.params.id);
+  }, []);
+
+  const { title, author, published, comments, id } = post;
+
   return (
     <div>
       <div className="container">

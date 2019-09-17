@@ -7,9 +7,10 @@ import {
   SEARCH_POSTS,
   GET_POST,
   GET_POSTS,
-  CLEAR_SEARCH,
-  CREATE_COMMENT,
+  // CLEAR_SEARCH,
+  // CREATE_COMMENT,
   CREATE_POST
+  // SET_POSTS
 } from "../types";
 
 const PostState = props => {
@@ -31,17 +32,24 @@ const PostState = props => {
       payload: res.data.items
     });
   };
+
   // Get post
+  const getPost = async id => {
+    const res = await axios.get(`http://localhost:5000/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data
+    });
+  };
 
   // Get posts
   const getPosts = async text => {
-    const res = await axios.get(
-      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/`
-    );
+    const res = await axios.get("http://localhost:5000/posts/");
 
     dispatch({
       type: GET_POSTS,
-      payload: res.data.items
+      payload: res.data
     });
   };
 
@@ -51,11 +59,7 @@ const PostState = props => {
 
   // Create post
   const createPost = async text => {
-    const res = await axios.post(
-      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/${JSON.stringify(
-        text
-      )}`
-    );
+    const res = await axios.post(`http://localhost:5000/posts/ ${text}`);
 
     dispatch({
       type: CREATE_POST,
@@ -70,7 +74,8 @@ const PostState = props => {
         user: state.user,
         searchPosts,
         createPost,
-        getPosts
+        getPosts,
+        getPost
       }}
     >
       {props.children}
