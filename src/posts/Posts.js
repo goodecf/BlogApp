@@ -8,6 +8,7 @@ const Posts = () => {
   // Get posts from post state
   useEffect(() => {
     postContext.getPosts();
+    // eslint-disable-next-line
   }, []);
 
   const { posts } = postContext;
