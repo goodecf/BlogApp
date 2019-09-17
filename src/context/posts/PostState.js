@@ -23,9 +23,7 @@ const PostState = props => {
 
   // Search posts
   const searchPosts = async text => {
-    const res = await axios.get(
-      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/?q=${text}`
-    );
+    const res = await axios.get(`http://localhost:5000/posts/?q=${text}`);
 
     dispatch({
       type: SEARCH_POSTS,
@@ -45,7 +43,7 @@ const PostState = props => {
 
   // Get posts
   const getPosts = async text => {
-    const res = await axios.get("http://localhost:5000/posts/");
+    const res = await axios.get(`http://localhost:5000/posts/`);
 
     dispatch({
       type: GET_POSTS,
@@ -71,7 +69,7 @@ const PostState = props => {
     <PostContext.Provider
       value={{
         posts: state.posts,
-        user: state.user,
+        post: state.post,
         searchPosts,
         createPost,
         getPosts,

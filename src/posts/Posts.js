@@ -5,14 +5,11 @@ import PostContext from "../context/posts/postContext";
 const Posts = () => {
   const postContext = useContext(PostContext);
 
-  const initialLoad = () => {
-    postContext.getPosts("");
-  };
-
-  // Set posts on load
-  useEffect(initialLoad, []);
-
   // Get posts from post state
+  useEffect(() => {
+    postContext.getPosts();
+  }, []);
+
   const { posts } = postContext;
 
   return (

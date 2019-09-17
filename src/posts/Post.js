@@ -1,30 +1,32 @@
 import React, { useContext, useEffect } from "react";
 import CreateComment from "../comments/CreateComment";
 import PostContext from "../context/posts/postContext";
+import Comments from "../comments/Comments";
 
-const Post = ({ match }) => {
+const Post = ({ id, match }) => {
   const postContext = useContext(PostContext);
-  const { post, getPost } = postContext;
 
   useEffect(() => {
-    getPost(match.params.id);
+    postContext.getPost(match.params.id);
   }, []);
 
-  const { title, author, published, comments, id } = post;
+  const { post } = postContext;
 
   return (
     <div>
       <div className="container">
-        <h1>{title}</h1>
-        <h1>{author}</h1>
-        <h1>{published}</h1>
-        <h1>{comments}</h1>
+        <p>
+          Posted by {post.author} on {post.published}
+        </p>
+        <h5>{post.title}</h5>
+        <h4>{post.content}</h4>
         <h1>{id}</h1>
       </div>
 
       <CreateComment></CreateComment>
       <div className="container">
         <p>Comments</p>
+        <Comments comments={post.comments}></Comments>
       </div>
     </div>
   );

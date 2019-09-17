@@ -10,16 +10,16 @@
           "content": "Good stuff!"
         },
         {
-          "name": "John",
-          "content": "Good stuff!!"
+          "name": "Sarah",
+          "content": "This sucked."
         },
         {
-          "name": "John",
-          "content": "Good stuff!"
+          "name": "Bill",
+          "content": "I want to"
         },
         {
-          "name": "John",
-          "content": "Good stuff!"
+          "name": "tunabob13",
+          "content": "Mom!!!!"
         }
       ],
       "content": "Today I walked my dog and it was fun.",
@@ -37,16 +37,22 @@
       "title": "Time to go",
       "author": "billbill10",
       "published": "June 15 2018",
-      "comments": [],
+      "comments": [
+        {
+          "name": "tunabob13",
+          "content": "I hate you guys!"
+        }
+      ],
       "content": "In today's age of technology life it pretty cool.",
       "id": "03"
     },
     {
       "title": "Hello?",
       "author": "It's me!",
+      "published": "June 15 2018",
+      "comments": [],
       "content": "I hate you guys!",
-      "id": "O4UzAk3",
-      "comments": "[]"
+      "id": "O4UzAk3"
     }
   ]
 }
