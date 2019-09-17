@@ -7,8 +7,8 @@ import {
   SEARCH_POSTS,
   GET_POST,
   GET_POSTS,
-  CLEAR_SEARCH,
-  CREATE_COMMENT,
+  // CLEAR_SEARCH,
+  // CREATE_COMMENT,
   CREATE_POST
 } from "../types";
 
@@ -22,9 +22,7 @@ const PostState = props => {
 
   // Search posts
   const searchPosts = async text => {
-    const res = await axios.get(
-      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/?q=${text}`
-    );
+    const res = await axios.get(`http://localhost:5000/posts/?q=${text}`);
 
     dispatch({
       type: SEARCH_POSTS,
@@ -32,16 +30,22 @@ const PostState = props => {
     });
   };
   // Get post
+  const getPost = async id => {
+    const res = await axios.get(`http://localhost:5000/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data
+    });
+  };
 
   // Get posts
   const getPosts = async text => {
-    const res = await axios.get(
-      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/`
-    );
+    const res = await axios.get(`http://localhost:5000/posts/`);
 
     dispatch({
       type: GET_POSTS,
-      payload: res.data.items
+      payload: res.data
     });
   };
 
@@ -67,10 +71,11 @@ const PostState = props => {
     <PostContext.Provider
       value={{
         posts: state.posts,
-        user: state.user,
+        post: state.post,
         searchPosts,
         createPost,
-        getPosts
+        getPosts,
+        getPost
       }}
     >
       {props.children}
