@@ -25,7 +25,21 @@ const Submit = () => {
     e.preventDefault();
 
     if (title !== "" && name !== "" && content !== "") {
-      postContext.createPost([{ title, name, content, id }]);
+      const newPost = {
+        title,
+        name,
+        published:
+          new Date().getDay() +
+          "/" +
+          new Date().getMonth() +
+          "/" +
+          new Date().getFullYear(),
+        comments: [],
+        content,
+        id: uuidv4()
+      };
+      postContext.createPost(newPost);
+      postContext.getPosts();
     }
   };
   return (

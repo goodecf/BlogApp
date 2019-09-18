@@ -7,10 +7,9 @@ import {
   SEARCH_POSTS,
   GET_POST,
   GET_POSTS,
+  CREATE_POST,
+  CREATE_COMMENT
   // CLEAR_SEARCH,
-  // CREATE_COMMENT,
-  CREATE_POST
-  // SET_POSTS
 } from "../types";
 
 const PostState = props => {
@@ -34,7 +33,6 @@ const PostState = props => {
   // Get post
   const getPost = async id => {
     const res = await axios.get(`http://localhost:5000/posts/${id}`);
-
     dispatch({
       type: GET_POST,
       payload: res.data
@@ -54,11 +52,39 @@ const PostState = props => {
   // Clear search
 
   // Create comment
+  const createComment = async newPost => {
+    const res = await axios.post(
+      `http://localhost:5000/posts/${newPost.currId}`,
+      {
+        title: newPost.title,
+        author: newPost.author,
+        published: newPost.published,
+        comments: newPost.comments.push({
+          name: newPost.name,
+          content: newPost.content,
+          id: newPost.id
+        }),
+        content: newPost.content,
+        id: newPost.currId
+      }
+    );
+
+    dispatch({
+      type: CREATE_COMMENT,
+      payload: res.data
+    });
+  };
 
   // Create post
   const createPost = async text => {
-    const res = await axios.post(`http://localhost:5000/posts/ ${text}`);
-
+    const res = await axios.post("/posts/", {
+      title: text.title,
+      author: text.name,
+      published: text.published,
+      comments: [],
+      content: text.content,
+      id: text.id
+    });
     dispatch({
       type: CREATE_POST,
       payload: res.data
@@ -73,7 +99,8 @@ const PostState = props => {
         searchPosts,
         createPost,
         getPosts,
-        getPost
+        getPost,
+        createComment
       }}
     >
       {props.children}

@@ -13,7 +13,6 @@ const Post = ({ match }) => {
   }, []);
 
   const { title, content, author, published, comments, id } = post;
-
   return (
     <Fragment>
       <div className="container">
@@ -24,13 +23,19 @@ const Post = ({ match }) => {
         <h4>{content}</h4>
       </div>
 
-      <CreateComment></CreateComment>
+      {id !== undefined && (
+        <CreateComment
+          currId={id}
+          postTitle={title}
+          postContent={content}
+          postAuthor={author}
+          postPublished={published}
+          postComments={comments}
+        ></CreateComment>
+      )}
       <div className="container">
         <p>Comments</p>
-        {/* {comments.map(comment => (
-          <h1>{comment.name}</h1>
-        ))} */}
-        <Comments comments={comments}></Comments>
+        {comments !== undefined && <Comments comments={comments}></Comments>}
       </div>
     </Fragment>
   );
