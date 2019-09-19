@@ -8,14 +8,16 @@ import {
   GET_POST,
   GET_POSTS,
   CREATE_POST,
-  CREATE_COMMENT
+  CREATE_COMMENT,
+  SET_SEARCH
   // CLEAR_SEARCH,
 } from "../types";
 
 const PostState = props => {
   const initialState = {
     posts: [],
-    post: {}
+    post: {},
+    search: ""
   };
 
   const [state, dispatch] = useReducer(PostReducer, initialState);
@@ -27,6 +29,14 @@ const PostState = props => {
     dispatch({
       type: SEARCH_POSTS,
       payload: res.data
+    });
+  };
+
+  const setSearch = text => {
+    const res = text;
+    dispatch({
+      type: SET_SEARCH,
+      payload: res
     });
   };
 
@@ -69,15 +79,16 @@ const PostState = props => {
   };
 
   // Create post
-  const createPost = async text => {
+  const createPost = async post => {
     const res = await axios.post("/posts/", {
-      title: text.title,
-      author: text.name,
-      published: text.published,
+      title: post.title,
+      author: post.name,
+      published: post.published,
       comments: [],
-      content: text.content,
-      id: text.id
+      content: post.content,
+      id: post.id
     });
+
     dispatch({
       type: CREATE_POST,
       payload: res.data
@@ -89,11 +100,13 @@ const PostState = props => {
       value={{
         posts: state.posts,
         post: state.post,
+        search: state.search,
         searchPosts,
         createPost,
         getPosts,
         getPost,
-        createComment
+        createComment,
+        setSearch
       }}
     >
       {props.children}

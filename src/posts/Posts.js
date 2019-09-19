@@ -7,7 +7,11 @@ const Posts = () => {
 
   // Get posts from post state
   useEffect(() => {
-    postContext.getPosts();
+    if (postContext.search !== "") {
+      postContext.searchPosts(postContext.search);
+    } else {
+      postContext.getPosts();
+    }
     // eslint-disable-next-line
   }, []);
 

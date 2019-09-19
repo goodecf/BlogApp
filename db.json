@@ -1,3 +1,45 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "title": "Post#1",
+      "author": "John",
+      "published": "3/8/2019",
+      "comments": [
+        {
+          "name": "Stephanie",
+          "content": "Nice post.",
+          "id": "ddf266c9-7756-4acd-b285-69d8cf7aff05"
+        },
+        {
+          "name": "Jeff",
+          "content": "Hey John!",
+          "id": "c6b805f0-9851-48ae-88ed-3f04de9a3ceb"
+        }
+      ],
+      "content": "Cool blog post.",
+      "id": "7f2341ac-7050-496e-91b6-378e3a45d053"
+    },
+    {
+      "title": "Post#2",
+      "author": "Sarah",
+      "published": "3/8/2019",
+      "comments": [
+        {
+          "name": "Tom",
+          "content": "Nice post Sarah.",
+          "id": "4c11daed-ed9a-40d3-82ce-7f7648bc7e44"
+        }
+      ],
+      "content": "Sarah is cool.",
+      "id": "b2abf9b3-a2e4-43f0-adcd-ff83c4e875cd"
+    },
+    {
+      "title": "NewPost",
+      "author": "Name",
+      "published": "3/8/2019",
+      "comments": [],
+      "content": "Cool blog post.",
+      "id": "0fd4d3aa-2c6d-456d-a109-6cd6e6ce3a44"
+    }
+  ]
 }

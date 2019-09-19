@@ -4,7 +4,8 @@ import {
   GET_POSTS,
   // CLEAR_SEARCH,
   CREATE_COMMENT,
-  CREATE_POST
+  CREATE_POST,
+  SET_SEARCH
 } from "../types";
 
 export default (state, action) => {
@@ -22,7 +23,7 @@ export default (state, action) => {
     case CREATE_POST:
       return {
         ...state,
-        posts: action.payload
+        posts: [...state.posts, action.payload]
       };
     case GET_POST:
       return {
@@ -33,6 +34,11 @@ export default (state, action) => {
       return {
         ...state,
         post: action.payload
+      };
+    case SET_SEARCH:
+      return {
+        ...state,
+        search: action.payload
       };
     default:
       return state;

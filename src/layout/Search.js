@@ -1,22 +1,31 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import PostContext from "../context/posts/postContext";
 
 const Search = () => {
-  const [text, setText] = useState("");
-
   const postContext = useContext(PostContext);
+
   const input = e => {
-    setText(e.target.value);
+    postContext.setSearch(e.target.value);
   };
+
+  // const submit = e => {
+  //   e.preventDefault();
+  //   if (text !== "") {
+  //     postContext.searchPosts(text);
+  //   } else {
+  //     postContext.getPosts();
+  //   }
+  // };
 
   const submit = e => {
     e.preventDefault();
-    if (text !== "") {
-      postContext.searchPosts(text);
+    if (postContext.search !== "") {
+      postContext.searchPosts(postContext.search);
     } else {
       postContext.getPosts();
     }
   };
+
   return (
     <div>
       <form onSubmit={submit} className="form">

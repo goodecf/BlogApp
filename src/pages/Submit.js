@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import PostContext from "../context/posts/postContext";
 import uuidv4 from "uuidv4";
+import { Link } from "react-router-dom";
 
 const Submit = () => {
   const postContext = useContext(PostContext);
@@ -21,7 +22,7 @@ const Submit = () => {
   };
 
   const submit = e => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (title !== "" && name !== "" && content !== "") {
       const newPost = {
@@ -38,7 +39,6 @@ const Submit = () => {
         id: uuidv4()
       };
       postContext.createPost(newPost);
-      // postContext.getPosts();
     }
   };
   return (
@@ -64,8 +64,14 @@ const Submit = () => {
           placeholder="Enter your blog post here"
           onChange={inputContent}
         ></textarea>
-
-          <input type="submit" onSubmit={submit} value="Post" className="btn bg-dark" />
+        <Link to="/" onClick={submit}>
+          <input
+            type="submit"
+            // onSubmit={submit}
+            value="Post"
+            className="btn bg-dark"
+          />
+        </Link>
       </form>
     </div>
   );
