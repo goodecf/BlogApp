@@ -26,7 +26,7 @@ const PostState = props => {
 
     dispatch({
       type: SEARCH_POSTS,
-      payload: res.data.items
+      payload: res.data
     });
   };
 
@@ -53,21 +53,14 @@ const PostState = props => {
 
   // Create comment
   const createComment = async newPost => {
-    const res = await axios.post(
-      `http://localhost:5000/posts/${newPost.currId}`,
-      {
-        title: newPost.title,
-        author: newPost.author,
-        published: newPost.published,
-        comments: newPost.comments.push({
-          name: newPost.name,
-          content: newPost.content,
-          id: newPost.id
-        }),
-        content: newPost.content,
-        id: newPost.currId
-      }
-    );
+    const res = await axios.put(`http://localhost:5000/posts/${newPost.id}`, {
+      title: newPost.title,
+      author: newPost.author,
+      published: newPost.published,
+      comments: newPost.comments,
+      content: newPost.content,
+      id: newPost.id
+    });
 
     dispatch({
       type: CREATE_COMMENT,

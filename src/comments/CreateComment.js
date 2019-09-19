@@ -23,18 +23,16 @@ const CreateComment = ({
   };
 
   const submitComment = () => {
+    postComments.push({ name: nameState, content: commentState, id: uuidv4() });
     const newPostWithComment = {
-      postTitle,
-      postContent,
-      postAuthor,
-      postPublished,
-      postComments,
-      name: nameState,
-      content: commentState,
-      id: uuidv4(),
-      currId: currId
+      title: postTitle,
+      content: postContent,
+      author: postAuthor,
+      published: postPublished,
+      comments: postComments,
+      id: currId
     };
-
+    setCommentState("");
     postContext.createComment(newPostWithComment);
   };
 
@@ -50,7 +48,12 @@ const CreateComment = ({
         placeholder="Enter your comment"
         onChange={setComment}
       ></input>
-      <input type="submit" value="Comment" onClick={submitComment} />
+      <input
+        type="submit"
+        value="Comment"
+        onClick={submitComment}
+        className="btn bg-dark"
+      />
     </div>
   );
 };

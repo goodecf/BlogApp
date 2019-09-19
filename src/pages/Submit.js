@@ -4,7 +4,6 @@ import uuidv4 from "uuidv4";
 
 const Submit = () => {
   const postContext = useContext(PostContext);
-  const id = uuidv4();
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
@@ -39,7 +38,7 @@ const Submit = () => {
         id: uuidv4()
       };
       postContext.createPost(newPost);
-      postContext.getPosts();
+      // postContext.getPosts();
     }
   };
   return (
@@ -48,7 +47,7 @@ const Submit = () => {
         <div className="container">
           <input
             type="text"
-            placeholder="Enter your title here"
+            placeholder="Enter a title here"
             onChange={inputTitle}
           />
           <input
@@ -65,12 +64,8 @@ const Submit = () => {
           placeholder="Enter your blog post here"
           onChange={inputContent}
         ></textarea>
-        <input
-          type="submit"
-          value="Post"
-          className="btn bg-dark"
-          onSubmit={submit}
-        />
+
+          <input type="submit" onSubmit={submit} value="Post" className="btn bg-dark" />
       </form>
     </div>
   );

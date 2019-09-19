@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 const Comments = ({ comments }) => {
   return (
     <Fragment>
-      {comments.map((comment, index) => (
-        <div id={index} className="card">
+      {comments.map(comment => (
+        <div className="card">
           <h5>{comment.name}</h5>
           <h4>{comment.content}</h4>
         </div>

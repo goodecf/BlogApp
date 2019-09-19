@@ -23,7 +23,7 @@ const Post = ({ match }) => {
         <h4>{content}</h4>
       </div>
 
-      {id !== undefined && (
+      {id !== undefined && comments !== undefined && (
         <CreateComment
           currId={id}
           postTitle={title}
@@ -35,7 +35,9 @@ const Post = ({ match }) => {
       )}
       <div className="container">
         <p>Comments</p>
-        {comments !== undefined && <Comments comments={comments}></Comments>}
+        {comments !== undefined && (
+          <Comments comments={comments} key={id}></Comments>
+        )}
       </div>
     </Fragment>
   );

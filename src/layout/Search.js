@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import ArticleContext from "../context/posts/postContext";
+import PostContext from "../context/posts/postContext";
 
 const Search = () => {
   const [text, setText] = useState("");
 
-  const articleContext = useContext(ArticleContext);
+  const postContext = useContext(PostContext);
   const input = e => {
     setText(e.target.value);
   };
@@ -12,7 +12,9 @@ const Search = () => {
   const submit = e => {
     e.preventDefault();
     if (text !== "") {
-      articleContext.searchPosts(text);
+      postContext.searchPosts(text);
+    } else {
+      postContext.getPosts();
     }
   };
   return (

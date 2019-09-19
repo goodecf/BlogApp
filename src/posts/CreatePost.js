@@ -5,7 +5,11 @@ const CreatePost = () => {
   return (
     <div>
       <Link to="/submit">
-        <input type="submit" value="Create Post" className="all-center" />
+        <input
+          type="submit"
+          value="Create Blog Post"
+          className="all-center btn bg-dark"
+        />
       </Link>
     </div>
   );
