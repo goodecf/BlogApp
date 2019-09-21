@@ -27,9 +27,7 @@ const PostState = props => {
   // Search posts
   const searchPosts = async text => {
     setLoading();
-    const res = await axios.get(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/?q=${text}`
-    );
+    const res = await axios.get(`http://localhost:5000/posts/?q=${text}`);
 
     dispatch({
       type: SEARCH_POSTS,
@@ -48,9 +46,7 @@ const PostState = props => {
   // Get post
   const getPost = async id => {
     setLoading();
-    const res = await axios.get(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/${id}`
-    );
+    const res = await axios.get(`http://localhost:5000/posts/${id}`);
     dispatch({
       type: GET_POST,
       payload: res.data
@@ -60,9 +56,7 @@ const PostState = props => {
   // Get posts
   const getPosts = async text => {
     setLoading();
-    const res = await axios.get(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/`
-    );
+    const res = await axios.get("http://localhost:5000/posts/");
 
     dispatch({
       type: GET_POSTS,
@@ -70,21 +64,16 @@ const PostState = props => {
     });
   };
 
-  // Clear search
-
   // Create comment
   const createComment = async newPost => {
-    const res = await axios.put(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/${newPost.id}`,
-      {
-        title: newPost.title,
-        author: newPost.author,
-        published: newPost.published,
-        comments: newPost.comments,
-        content: newPost.content,
-        id: newPost.id
-      }
-    );
+    const res = await axios.put(`http://localhost:5000/posts/${newPost.id}`, {
+      title: newPost.title,
+      author: newPost.author,
+      published: newPost.published,
+      comments: newPost.comments,
+      content: newPost.content,
+      id: newPost.id
+    });
 
     dispatch({
       type: CREATE_COMMENT,
@@ -94,17 +83,14 @@ const PostState = props => {
 
   // Create post
   const createPost = async post => {
-    const res = await axios.post(
-      "https://my-json-server.typicode.com/goodecf/BlogApp/posts/",
-      {
-        title: post.title,
-        author: post.name,
-        published: post.published,
-        comments: [],
-        content: post.content,
-        id: post.id
-      }
-    );
+    const res = await axios.post("http://localhost:5000/posts/", {
+      title: post.title,
+      author: post.name,
+      published: post.published,
+      comments: [],
+      content: post.content,
+      id: post.id
+    });
 
     dispatch({
       type: CREATE_POST,
