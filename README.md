@@ -4,8 +4,11 @@ This application is an online blog application implemented in React in which use
 
 ## Use
 
-The application can be found [here](https://blogapp19.netlify.com/).
+1. Clone the repository.
+2. Download [NodeJS](https://nodejs.org/en/) if not already installed.
+3. Download the required node modules through `npm install`.
+4. Start the backend and front end using `npm run dev`.
 
 ## Note
 
-The application currently uses [JSON Server](https://github.com/typicode/json-server) as the REST API, and thus changes are not consistant unless the server is running locally.
+Due to [JSON Server](https://github.com/typicode/json-server) not supporting HTTPS requests, for now the application must be downloaded to run.
