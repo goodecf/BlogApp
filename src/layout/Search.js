@@ -8,15 +8,6 @@ const Search = () => {
     postContext.setSearch(e.target.value);
   };
 
-  // const submit = e => {
-  //   e.preventDefault();
-  //   if (text !== "") {
-  //     postContext.searchPosts(text);
-  //   } else {
-  //     postContext.getPosts();
-  //   }
-  // };
-
   const submit = e => {
     e.preventDefault();
     if (postContext.search !== "") {
