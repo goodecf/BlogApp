@@ -4,18 +4,23 @@ import PostContext from "../context/posts/postContext";
 
 const Posts = () => {
   const postContext = useContext(PostContext);
+  const { getPosts, searchPosts, loading } = postContext;
 
   // Get posts from post state
   useEffect(() => {
     if (postContext.search !== "") {
-      postContext.searchPosts(postContext.search);
+      searchPosts(postContext.search);
     } else {
-      postContext.getPosts();
+      getPosts();
     }
     // eslint-disable-next-line
   }, []);
 
   const { posts } = postContext;
+
+  if (loading) {
+    return <></>;
+  }
 
   return (
     <div className="card">
