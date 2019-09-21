@@ -5,7 +5,7 @@ import Comments from "../comments/Comments";
 
 const Post = ({ match }) => {
   const postContext = useContext(PostContext);
-  const { post, getPost } = postContext;
+  const { post, getPost, loading } = postContext;
 
   useEffect(() => {
     getPost(match.params.id);
@@ -13,13 +13,14 @@ const Post = ({ match }) => {
   }, []);
 
   const { title, content, author, published, comments, id } = post;
+  if (loading) return <> </>;
   return (
     <Fragment>
       <div className="container">
-        <p>
+        <h5>
           Posted by {author} on {published}
-        </p>
-        <h5>{title}</h5>
+        </h5>
+        <h3>{title}</h3>
         <h4>{content}</h4>
       </div>
 
