@@ -28,7 +28,7 @@ const PostState = props => {
   const searchPosts = async text => {
     setLoading();
     const res = await axios.get(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/?q=${text}`
+      `my-json-server.typicode.com/goodecf/BlogApp/posts/?q=${text}`
     );
 
     dispatch({
@@ -49,7 +49,7 @@ const PostState = props => {
   const getPost = async id => {
     setLoading();
     const res = await axios.get(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/${id}`
+      `my-json-server.typicode.com/goodecf/BlogApp/posts/${id}`
     );
     dispatch({
       type: GET_POST,
@@ -61,7 +61,7 @@ const PostState = props => {
   const getPosts = async text => {
     setLoading();
     const res = await axios.get(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/`
+      `my-json-server.typicode.com/goodecf/BlogApp/posts/`
     );
 
     dispatch({
@@ -75,7 +75,7 @@ const PostState = props => {
   // Create comment
   const createComment = async newPost => {
     const res = await axios.put(
-      `https://my-json-server.typicode.com/goodecf/BlogApp/posts/${newPost.id}`,
+      `my-json-server.typicode.com/goodecf/BlogApp/posts/${newPost.id}`,
       {
         title: newPost.title,
         author: newPost.author,
@@ -95,7 +95,7 @@ const PostState = props => {
   // Create post
   const createPost = async post => {
     const res = await axios.post(
-      "https://my-json-server.typicode.com/goodecf/BlogApp/posts/",
+      "my-json-server.typicode.com/goodecf/BlogApp/posts/",
       {
         title: post.title,
         author: post.name,
