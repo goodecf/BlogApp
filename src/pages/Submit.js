@@ -24,16 +24,14 @@ const Submit = () => {
   const submit = e => {
     // e.preventDefault();
 
+    const date = new Date();
+
     if (title !== "" && name !== "" && content !== "") {
       const newPost = {
         title,
         name,
         published:
-          new Date().getDay() +
-          "/" +
-          new Date().getMonth() +
-          "/" +
-          new Date().getFullYear(),
+          date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear(),
         comments: [],
         content,
         id: uuidv4()
@@ -65,12 +63,7 @@ const Submit = () => {
           onChange={inputContent}
         ></textarea>
         <Link to="/" onClick={submit}>
-          <input
-            type="submit"
-            // onSubmit={submit}
-            value="Post"
-            className="btn bg-dark"
-          />
+          <input type="submit" value="Post" className="btn bg-dark" />
         </Link>
       </form>
     </div>
