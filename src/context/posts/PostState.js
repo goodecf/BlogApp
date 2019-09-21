@@ -9,7 +9,8 @@ import {
   GET_POSTS,
   CREATE_POST,
   CREATE_COMMENT,
-  SET_SEARCH
+  SET_SEARCH,
+  SET_LOADING
   // CLEAR_SEARCH,
 } from "../types";
 
@@ -17,14 +18,18 @@ const PostState = props => {
   const initialState = {
     posts: [],
     post: {},
-    search: ""
+    search: "",
+    loading: false
   };
 
   const [state, dispatch] = useReducer(PostReducer, initialState);
 
   // Search posts
   const searchPosts = async text => {
-    const res = await axios.get(`http://localhost:5000/posts/?q=${text}`);
+    setLoading();
+    const res = await axios.get(
+      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/?q=${text}`
+    );
 
     dispatch({
       type: SEARCH_POSTS,
@@ -42,7 +47,10 @@ const PostState = props => {
 
   // Get post
   const getPost = async id => {
-    const res = await axios.get(`http://localhost:5000/posts/${id}`);
+    setLoading();
+    const res = await axios.get(
+      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/${id}`
+    );
     dispatch({
       type: GET_POST,
       payload: res.data
@@ -51,7 +59,10 @@ const PostState = props => {
 
   // Get posts
   const getPosts = async text => {
-    const res = await axios.get(`http://localhost:5000/posts/`);
+    setLoading();
+    const res = await axios.get(
+      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/`
+    );
 
     dispatch({
       type: GET_POSTS,
@@ -63,14 +74,17 @@ const PostState = props => {
 
   // Create comment
   const createComment = async newPost => {
-    const res = await axios.put(`http://localhost:5000/posts/${newPost.id}`, {
-      title: newPost.title,
-      author: newPost.author,
-      published: newPost.published,
-      comments: newPost.comments,
-      content: newPost.content,
-      id: newPost.id
-    });
+    const res = await axios.put(
+      `http://my-json-server.typicode.com/goodecf/BlogApp/posts/${newPost.id}`,
+      {
+        title: newPost.title,
+        author: newPost.author,
+        published: newPost.published,
+        comments: newPost.comments,
+        content: newPost.content,
+        id: newPost.id
+      }
+    );
 
     dispatch({
       type: CREATE_COMMENT,
@@ -80,14 +94,17 @@ const PostState = props => {
 
   // Create post
   const createPost = async post => {
-    const res = await axios.post("/posts/", {
-      title: post.title,
-      author: post.name,
-      published: post.published,
-      comments: [],
-      content: post.content,
-      id: post.id
-    });
+    const res = await axios.post(
+      "http://my-json-server.typicode.com/goodecf/BlogApp/posts/",
+      {
+        title: post.title,
+        author: post.name,
+        published: post.published,
+        comments: [],
+        content: post.content,
+        id: post.id
+      }
+    );
 
     dispatch({
       type: CREATE_POST,
@@ -95,12 +112,16 @@ const PostState = props => {
     });
   };
 
+  // Set loading
+  const setLoading = () => dispatch({ type: SET_LOADING });
+
   return (
     <PostContext.Provider
       value={{
         posts: state.posts,
         post: state.post,
         search: state.search,
+        loading: state.loading,
         searchPosts,
         createPost,
         getPosts,
