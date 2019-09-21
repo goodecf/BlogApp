@@ -1,6 +1,6 @@
 # BlogApp
 
-This application is an online blog application implemented in React in which users can create blog posts, search other blog posts, and create comments.
+This application is an online blog implemented in React in which users can create blog posts, search other blog posts, and create comments.
 
 ## Use
 
